@@ -1,12 +1,6 @@
-import com.mike.crud.model.Developer;
-import com.mike.crud.model.Skill;
-import com.mike.crud.model.Specialty;
-import com.mike.crud.model.Status;
+import com.mike.crud.repository.entity.DeveloperEntity;
 import com.mike.crud.repository.entity.SkillEntity;
-import com.mike.crud.repository.entity.SpecialtyEntity;
-import com.mike.crud.servicesHibernate.DeveloperServicesHib;
-import com.mike.crud.servicesHibernate.SkillServicesHib;
-import com.mike.crud.servicesHibernate.SpecialtyServicesHib;
+import com.mike.crud.repository.entity.TestDev;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -77,17 +71,62 @@ public class Test {
 //        newDeveloper.setSpecialty(specialty);
 //        newDeveloper.setSkills(skillList);
 
-        DeveloperServicesHib developerServicesHib = new DeveloperServicesHib();
+//        DeveloperServicesHib developerServicesHib = new DeveloperServicesHib();
+
+
 //        developerServicesHib.createDeveloper(newDeveloper);
 //        developerServicesHib.updateDeveloper(newDeveloper);
 //        developerServicesHib.deleteDeveloper(6);
 
-        System.out.println(developerServicesHib.getDeveloperById(7));
+//        System.out.println(developerServicesHib.getDeveloperById(7));
 //        Skill skill = new Skill();
 //        skill.setSkill("Test99");
 //        skill.setStatus(Status.ACTIVE);
 //        SkillServicesHib skillServicesHib = new SkillServicesHib();
 //        skillServicesHib.createSkill(skill);
+
+        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+                .addAnnotatedClass(TestDev.class)
+                .addAnnotatedClass(SkillEntity.class)
+                .buildSessionFactory();
+
+        Session session = sessionFactory.getCurrentSession();
+
+        try {
+            session.beginTransaction();
+
+            DeveloperEntity dev = session.get(DeveloperEntity.class, 2);
+
+            System.out.println(dev);
+
+            SkillEntity skill1 = session.get(SkillEntity.class, 1);
+            SkillEntity skill2 = session.get(SkillEntity.class, 4);
+            SkillEntity skill3 = session.get(SkillEntity.class, 5);
+            SkillEntity skill4 = session.get(SkillEntity.class, 6);
+
+            List<SkillEntity> newSkill = new ArrayList<>();
+            newSkill.add(skill1);
+            newSkill.add(skill2);
+            newSkill.add(skill3);
+            newSkill.add(skill4);
+
+            dev.setSkills(newSkill);
+
+            session.save(dev);
+
+//            List<SkillEntity> getSkill = dev.getListSpec();
+//            for(SkillEntity s:getSkill) {
+//                System.out.println(s.toString());
+//            }
+
+            session.getTransaction().commit();
+        } finally {
+            sessionFactory.close();
+
+            session.close();
+        }
+
+
 
     }
 }

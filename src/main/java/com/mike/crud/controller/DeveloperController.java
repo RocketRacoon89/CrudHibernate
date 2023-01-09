@@ -3,26 +3,24 @@ package com.mike.crud.controller;
 import com.mike.crud.model.Developer;
 import com.mike.crud.model.Skill;
 import com.mike.crud.model.Status;
-import com.mike.crud.repository.entity.SkillEntity;
-import com.mike.crud.servicesHibernate.DeveloperServicesHib;
-import com.mike.crud.servicesHibernate.SkillServicesHib;
-import com.mike.crud.servicesHibernate.SpecialtyServicesHib;
+import com.mike.crud.services.DeveloperServices;
+import com.mike.crud.services.SkillServices;
+import com.mike.crud.services.SpecialtyServices;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeveloperController {
 
-    private DeveloperServicesHib developerService = new DeveloperServicesHib();
-    private SkillServicesHib skillService = new SkillServicesHib();
-    private SpecialtyServicesHib specialtyService = new SpecialtyServicesHib();
+    private DeveloperServices developerService = new DeveloperServices();
+    private SkillServices skillService = new SkillServices();
+    private SpecialtyServices specialtyService = new SpecialtyServices();
 
     public Developer createDeveloper(String firstName, String lastName, List<Integer> skillID, Integer specialty, String status) {
         Developer developer = new Developer();
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
         List<Skill> skills = new ArrayList<>();
-//        skillID.stream().forEach(s-> skills.add(skillService.getByIdSkill(s)));
         for(Integer i:skillID) {
             Skill skill = skillService.getByIdSkill(i);
             skills.add(skill);
@@ -39,7 +37,6 @@ public class DeveloperController {
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
         List<Skill> skills = new ArrayList<>();
-//        skillID.stream().forEach(s-> skills.add(skillService.getByIdSkill(s)));
         for(Integer i:skillID) {
             Skill skill = skillService.getByIdSkill(i);
             skills.add(skill);
@@ -55,7 +52,7 @@ public class DeveloperController {
     }
 
     public List<Developer> getAllDevelopers() {
-        return developerService.getAllDeveloper();
+        return developerService.getAllDevelopers();
     }
 
     public Developer getDeveloper(Integer id) {

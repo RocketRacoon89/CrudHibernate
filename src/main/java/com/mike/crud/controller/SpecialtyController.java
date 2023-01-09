@@ -2,13 +2,13 @@ package com.mike.crud.controller;
 
 import com.mike.crud.model.Specialty;
 import com.mike.crud.model.Status;
-import com.mike.crud.servicesHibernate.SpecialtyServicesHib;
+import com.mike.crud.services.SpecialtyServices;
 
 import java.util.List;
 
 public class SpecialtyController {
 
-    private SpecialtyServicesHib specialtyService = new SpecialtyServicesHib();
+    private SpecialtyServices specialtyService = new SpecialtyServices();
 
     public Specialty createSpecialty(String name, String status) {
         Specialty specialty = new Specialty();

@@ -1,6 +1,7 @@
 package com.mike.crud.repository.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -20,6 +21,12 @@ public class SkillEntity {
 
     @Column(name="status")
     private String status;
+
+    @ManyToMany
+    @JoinTable(name="\"DB_Crud_Hiberante\".\"developer_skills\"",
+            joinColumns = @JoinColumn(name ="id_skill"),
+            inverseJoinColumns = @JoinColumn(name = "id_developer"))
+    private List<DeveloperEntity> developers;
 
     public int getId() {
         return id;
@@ -43,5 +50,22 @@ public class SkillEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public List<DeveloperEntity> getDevelopers() {
+        return developers;
+    }
+
+    public void setDevelopers(List<DeveloperEntity> developers) {
+        this.developers = developers;
+    }
+
+    @Override
+    public String toString() {
+        return "SkillEntity{" +
+                "id=" + id +
+                ", skill='" + skill + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

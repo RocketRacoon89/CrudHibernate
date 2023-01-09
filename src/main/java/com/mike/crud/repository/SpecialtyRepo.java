@@ -1,4 +1,4 @@
-package com.mike.crud.servicesHibernate;
+package com.mike.crud.repository;
 
 import com.mike.crud.model.Specialty;
 import com.mike.crud.model.Status;
@@ -10,12 +10,7 @@ import org.hibernate.cfg.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecialtyServicesHib {
-
-//    SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-//            .addAnnotatedClass(SpecialtyEntity.class).buildSessionFactory();
-//
-//    Session session = factory.getCurrentSession();
+public class SpecialtyRepo {
 
     private SessionFactory factory;
 
@@ -115,4 +110,5 @@ public class SpecialtyServicesHib {
         }
         return specialty;
     }
+
 }

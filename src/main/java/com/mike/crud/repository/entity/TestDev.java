@@ -5,17 +5,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "\"DB_Crud_Hiberante\".\"Developers\"")
-public class DeveloperEntity {
+public class TestDev {
 
-    public DeveloperEntity() {
-    }
-
-    public DeveloperEntity(int id, String firstName, String lastName, SpecialtyEntity specialty, String status) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.specialty = specialty;
-        this.status = status;
+    public TestDev() {
     }
 
     @Id
@@ -38,7 +30,7 @@ public class DeveloperEntity {
 
     @ManyToMany
     @JoinTable(name="\"DB_Crud_Hiberante\".\"developer_skills\"",
-            joinColumns = @JoinColumn(name ="id_developer"),
+             joinColumns = @JoinColumn(name ="id_developer"),
             inverseJoinColumns = @JoinColumn(name = "id_skill"))
     private List<SkillEntity> skills;
 
@@ -82,23 +74,22 @@ public class DeveloperEntity {
         this.status = status;
     }
 
-    public List<SkillEntity> getSkills() {
+    public List<SkillEntity> getListSpec() {
         return skills;
     }
 
-    public void setSkills(List<SkillEntity> skills) {
-        this.skills = skills;
+    public void setListSpec(List<SkillEntity> listSpec) {
+        this.skills = listSpec;
     }
 
     @Override
     public String toString() {
-        return "DeveloperEntity{" +
+        return "TestDev{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", specialty=" + specialty +
                 ", status='" + status + '\'' +
-                ", skills=" + skills +
                 '}';
     }
 }

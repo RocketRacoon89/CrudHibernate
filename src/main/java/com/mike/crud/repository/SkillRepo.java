@@ -1,4 +1,4 @@
-package com.mike.crud.servicesHibernate;
+package com.mike.crud.repository;
 
 import com.mike.crud.model.Skill;
 import com.mike.crud.model.Status;
@@ -10,14 +10,10 @@ import org.hibernate.cfg.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SkillServicesHib {
-
-//    private SessionFactory factory = new Configuration().configure("hibernate.cfg.xml")
-//            .addAnnotatedClass(SkillEntity.class).buildSessionFactory();
+public class SkillRepo {
 
     private SessionFactory factory;
 
-//    private Session session = factory.getCurrentSession();
     private Session session;
 
     public Skill createSkill(Skill skill) {

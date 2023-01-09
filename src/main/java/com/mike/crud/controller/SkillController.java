@@ -2,12 +2,12 @@ package com.mike.crud.controller;
 
 import com.mike.crud.model.Skill;
 import com.mike.crud.model.Status;
-import com.mike.crud.servicesHibernate.SkillServicesHib;
+import com.mike.crud.services.SkillServices;
 
 import java.util.List;
 
 public class SkillController {
-private SkillServicesHib skillService = new SkillServicesHib();
+private SkillServices skillService = new SkillServices();
 
     public Skill createSkill(String name, String status) {
         Skill skill = new Skill();
