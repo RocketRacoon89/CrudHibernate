@@ -13,6 +13,10 @@ public class DeveloperServices {
         this.developerRepo = new DeveloperRepo();
     }
 
+    public DeveloperServices(DeveloperRepo developerRepo) {
+        this.developerRepo = developerRepo;
+    }
+
     public Developer createDeveloper(Developer developer) {
         return developerRepo.createDeveloper(developer);
     }

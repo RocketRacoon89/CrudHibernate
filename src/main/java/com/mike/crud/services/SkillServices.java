@@ -13,6 +13,10 @@ public class SkillServices {
         this.skillRepo = new SkillRepo();
     }
 
+    public SkillServices(SkillRepo skillRepo) {
+        this.skillRepo = skillRepo;
+    }
+
     public Skill createSkill(Skill skill) {
         return skillRepo.createSkill(skill);
     }

@@ -12,6 +12,10 @@ public class SpecialtyServices {
         this.specialtyRepo = new SpecialtyRepo();
     }
 
+    public SpecialtyServices(SpecialtyRepo specialtyRepo) {
+        this.specialtyRepo=specialtyRepo;
+    }
+
     public Specialty createSpecialty(Specialty specialty) {
         return specialtyRepo.createSpecialty(specialty);
     }
